@@ -122,8 +122,17 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
-
+    # Authentication and Permission
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication'],
-    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticatedOrReadOnly']
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticatedOrReadOnly'],
+
+    # Throttling
+    'DEFAULT_THROTTLE_RATES':{
+
+        'anon':'10/day',
+        'user':'10/hour',
+        # username base throttle rate setting
+        # 'admin':'1/minute',
+    }   
 }
