@@ -2,12 +2,12 @@ from django.db.models import fields
 from rest_framework import serializers
 from rest_framework.viewsets import ModelViewSet
 
-from CRUD_REST.api.models import Singer, Song
+from .models import Singer, Song
 
 class SongSerializer(serializers.ModelSerializer):
     class Meta:
         model = Song
-        fields = '__all__'
+        fields = ['id', 'title', 'singer', 'duration']
 
 class SingerSerializer(serializers.ModelSerializer):
     class Meta:
