@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from rest_framework import viewsets
 from .serializers import*
 from .models import*
@@ -27,10 +27,14 @@ def Singer_Add(request):
     else:
         form_data = SingerAdd()
     singer = Singer.objects.all()
-    return render(request, 'home.html',{'form':form_data, 'singers':singer} )
+    return render(request, 'home.html',{'form':form_data, 'singers':singer})
 
-def delete_data(request):
-    
+def delete_data(request, myid):
+    if request.method == 'POST':
+        deleteset = Singer.objects.get(pk=myid)
+        deleteset.delete()
+        return redirect('/add')
+
 
 class SongModelViewSet(viewsets.ModelViewSet):
     queryset = Song.objects.all()

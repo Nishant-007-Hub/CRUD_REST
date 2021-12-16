@@ -5,6 +5,7 @@
 
 
 {% block bodycontent %}
+
 <body>
     <div class="row">
         <div class="col-sm-4">
@@ -13,36 +14,38 @@
                 {{form.as_p}}
                 <input type="submit" class='btn btn-success' value='Add'>
             </form>
-            
+
         </div>
         <div class="col-sm-7 offset-1">
             <h5 class='text-center alert alert-info'> Singers </h5>
             {% if singers %}
             <h4>Table Data</h4>
             <table class="table table-hover">
-                    <thead>
-                      <tr>
+                <thead>
+                    <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Gender</th>
                         <th scope="col">Action</th>
-                        
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        {% for singer in singers  %}
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        {% for singer in singers %}
                         <th scope="row">{{singer.id}}</th>
                         <td>{{singer.name}}</td>
                         <td>{{singer.gender}}</td>
                         <td>
-                            <a href="" class="btn btn-warning btn-sm ">Edit</a>
-                            <a href="" class="btn btn-danger btn-sm ">Delete</a>
+                            <a href="" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{% url 'delete_data' singer.id %}" method="POST" class='d-inline'> {% csrf_token %}
+                                <input type="submit" class='btn btn-danger btn-sm' value='Delete'>
+                            </form>
                         </td>
-                      </tr>
-                      {% endfor %}
-                    </tbody>
-              </table>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
             {% else %}
             <h5 class='text-center alert alert-warning'> No records Found </h5>
             {% endif %}
@@ -54,7 +57,8 @@
         </div>
     </div>
 
-  </body>
-  
-  {% endblock bodycontent %}
+</body>
+
+{% endblock bodycontent %}
+
 </html>
