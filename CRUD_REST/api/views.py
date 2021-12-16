@@ -35,6 +35,17 @@ def delete_data(request, myid):
         deleteset.delete()
         return redirect('/add')
 
+def edit_data(request, myid):
+    if request.method == "POST":
+        editset = Singer.objects.get(pk=myid)
+        var = SingerAdd(request.POST, instance=editset)
+        if var.is_valid():
+            var.save()
+    else:
+        editset = Singer.objects.get(pk=myid)
+        var = SingerAdd(instance=editset)
+    return render(request, 'updatesinger.html', {'var':var})
+
 
 class SongModelViewSet(viewsets.ModelViewSet):
     queryset = Song.objects.all()
