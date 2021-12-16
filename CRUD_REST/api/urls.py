@@ -24,5 +24,7 @@ router.register('SongModelViewset', SongModelViewSet, basename='SongModelViewSet
 router.register('SingerModelViewset', SingerModelViewSet, basename='SingerModelViewSet')
 
 urlpatterns = [
+    path('', home, name='homeBasic'),
+    path('add/', Singer_Add, name='home'),
     path('api/', include(router.urls)),
 ]

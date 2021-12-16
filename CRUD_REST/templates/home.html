@@ -1,0 +1,23 @@
+{% extends 'basic.html' %}
+{% block title %}
+<title> Add Singer </title>
+{% endblock title %}
+
+
+{% block bodycontent %}
+<body>
+    <div class="row">
+        <div class="col-sm-4">
+            <h5 class='text-center alert alert-info'> Add Singer </h5>
+            <form action="" method="POST"> {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" class='btn btn-success' value='Add'>
+            </form>
+
+        </div>
+    </div>
+
+  </body>
+  
+  {% endblock bodycontent %}
+</html>
