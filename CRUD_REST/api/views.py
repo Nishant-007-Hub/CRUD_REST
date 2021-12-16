@@ -15,15 +15,22 @@ def Singer_Add(request):
         form_data = SingerAdd(request.POST)
         if form_data.is_valid():
             # if u want to save cleaned data means one by one then use below method
+            # if u want to leave any field balnk during save so use below method
             # name = form_data.cleaned_data['name']
-            # gender = form_data.cleaned_data['gender']
+            gender = form_data.cleaned_data['gender']
             # var = Singer(name=name, gender=gender)
             # var.save()
             form_data.save()
+            # below is for after save, u will see blank form on frontend we are initializing blank form
+            form_data = SingerAdd()
 
     else:
         form_data = SingerAdd()
-    return render(request, 'home.html',{'form':form_data} )
+    singer = Singer.objects.all()
+    return render(request, 'home.html',{'form':form_data, 'singers':singer} )
+
+def delete_data(request):
+    
 
 class SongModelViewSet(viewsets.ModelViewSet):
     queryset = Song.objects.all()
