@@ -5,6 +5,7 @@ from .models import*
 from .forms import*
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter, OrderingFilter
 
 
 def home(request):
@@ -48,15 +49,15 @@ def edit_data(request, myid):
         editset = Singer.objects.get(pk=myid)
         var = SingerAdd(instance=editset)
     return render(request, 'updatesinger.html', {'var':var})
-
+     
 
 class SongModelViewSet(viewsets.ModelViewSet):
     queryset = Song.objects.all()
     serializer_class = SongSerializer
     throttle_classes=[UserRateThrottle, AnonRateThrottle]
     filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['title','singer']
 
-    
     # def get_queryset(self):
     #     # gender = self.request.gender
     #     return Singer.objects.filter(gender='male')
@@ -65,4 +66,6 @@ class SingerModelViewSet(viewsets.ModelViewSet):
     queryset = Singer.objects.all()
     serializer_class = SingerSerializer
     throttle_classes=[UserRateThrottle, AnonRateThrottle]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['name']
 
