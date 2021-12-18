@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'api'
+    'api',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -123,19 +124,23 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 
+        'rest_framework.pagination.PageNumberPagination',
+        'PAGE_SIZE': 2,  # PAGE_SIZE means number of records in 1 page
     # Authentication and Permission
-
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication'],
-        # 'rest_framework.authentication.TokenAuthentication'],
+    # 'rest_framework.authentication.TokenAuthentication'],
     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticatedOrReadOnly'],
 
     # Throttling
-    'DEFAULT_THROTTLE_RATES':{
+    'DEFAULT_THROTTLE_RATES': {
 
-        'anon':'10/day',
-        'user':'10/hour',
+        'anon': '10/day',
+        'user': '10/hour',
         # username base throttle rate setting
         # 'admin':'1/minute',
-    }   
+    },
+
+    
 }

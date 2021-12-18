@@ -8,11 +8,13 @@
 
 <body>
     <div class="row">
+        <h2 class='alert alert-info text-center'>CRUD Operations with Rest API</h2>
         <div class="col-sm-4">
             <h5 class='text-center alert alert-info'> Add Singer </h5>
             <form action="" method="POST"> {% csrf_token %}
                 {{form.as_p}}
                 <input type="submit" class='btn btn-success' value='Add'>
+                <a href="/api" class='btn btn-info'>Go to RestApi...</a>
             </form>
 
         </div>

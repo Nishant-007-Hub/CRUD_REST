@@ -4,6 +4,8 @@ from .serializers import*
 from .models import*
 from .forms import*
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
+from django_filters.rest_framework import DjangoFilterBackend
+
 
 def home(request):
     singerqueryset = Singer.objects.all()
@@ -41,6 +43,7 @@ def edit_data(request, myid):
         var = SingerAdd(request.POST, instance=editset)
         if var.is_valid():
             var.save()
+            var = SingerAdd()
     else:
         editset = Singer.objects.get(pk=myid)
         var = SingerAdd(instance=editset)
@@ -51,6 +54,12 @@ class SongModelViewSet(viewsets.ModelViewSet):
     queryset = Song.objects.all()
     serializer_class = SongSerializer
     throttle_classes=[UserRateThrottle, AnonRateThrottle]
+    filter_backends = [DjangoFilterBackend]
+
+    
+    # def get_queryset(self):
+    #     # gender = self.request.gender
+    #     return Singer.objects.filter(gender='male')
 
 class SingerModelViewSet(viewsets.ModelViewSet):
     queryset = Singer.objects.all()
