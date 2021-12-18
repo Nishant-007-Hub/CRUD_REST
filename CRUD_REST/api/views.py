@@ -67,5 +67,5 @@ class SingerModelViewSet(viewsets.ModelViewSet):
     serializer_class = SingerSerializer
     throttle_classes=[UserRateThrottle, AnonRateThrottle]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['name']
+    filterset_fields = ['name'] 
 

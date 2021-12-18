@@ -10,6 +10,7 @@ class SongSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class SingerSerializer(serializers.ModelSerializer):
+    sung_by = SongSerializer(many=True, read_only=True)
     class Meta:
         model = Singer
-        fields = '__all__'
+        fields = '__all__' 
