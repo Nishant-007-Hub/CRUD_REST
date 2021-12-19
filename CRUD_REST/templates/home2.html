@@ -12,7 +12,7 @@
         <div class="col-sm-4">
             <h5 class='text-center alert alert-info'> Add Singer </h5>
             <form action="" method="POST"> {% csrf_token %}
-                {{form.as_p}}
+                {{form_singer.as_p}}
                 <input type="submit" class='btn btn-success' value='Add'>
                 <a href="/api" class='btn btn-info'>Go to RestApi...</a>
             </form>
@@ -39,8 +39,8 @@
                         <td>{{singer.name}}</td>
                         <td>{{singer.gender}}</td>
                         <td>
-                            <a href="{% url 'edit_data' singer.id %}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{% url 'delete_data' singer.id %}" method="POST" class='d-inline'> {% csrf_token %}
+                            <a href="{% url 'edit_data_singer' singer.id %}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{% url 'delete_data_singer' singer.id %}" method="POST" class='d-inline'> {% csrf_token %}
                                 <input type="submit" class='btn btn-danger btn-sm' value='Delete'>
                             </form>
                         </td>
@@ -75,7 +75,7 @@
         <div class="col-sm-4">
             <h5 class='text-center alert alert-info'> Add Song </h5>
             <form action="" method="POST"> {% csrf_token %}
-                {{form.as_p}}
+                {{form_song.as_p}}
                 <input type="submit" class='btn btn-success' value='Add'>
                 <a href="/api" class='btn btn-info'>Go to RestApi...</a>
             </form>
@@ -83,28 +83,29 @@
 
 
         <div class="col-sm-7 offset-1">
-            <h5 class='text-center alert alert-info'> Singers </h5>
-            {% if singers %}
+            <h5 class='text-center alert alert-info'> Songs </h5>
+            {% if songs %}
             <h4>Table Data</h4>
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Gender</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Singer</th>
+                        <th scope="col">Duration</th>
 
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        {% for singer in singers %}
-                        <th scope="row">{{singer.id}}</th>
-                        <td>{{singer.name}}</td>
-                        <td>{{singer.gender}}</td>
+                        {% for song in songs %}
+                        <th scope="row">{{song.id}}</th>
+                        <td>{{song.title}}</td>
+                        <td>{{song.singer}}</td>
+                        <td>{{song.duration}}</td>
                         <td>
-                            <a href="{% url 'edit_data' singer.id %}" class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{% url 'delete_data' singer.id %}" method="POST" class='d-inline'> {% csrf_token %}
+                            <a href="{% url 'edit_data_song' song.title %}" class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{% url 'delete_data_song' song.title %}" method="POST" class='d-inline'> {% csrf_token %}
                                 <input type="submit" class='btn btn-danger btn-sm' value='Delete'>
                             </form>
                         </td>
