@@ -26,7 +26,7 @@ class SongAdd(forms.ModelForm):
         widgets = {
             'title' : forms.TextInput(attrs={'class':'form-control form-control-sm'}),
             'singer' : forms.TextInput(attrs={'class':'form-control form-control-sm'}),
-            'duration' : forms.TextInput(attrs={'class':'form-control form-control-sm'}),
+            'duration' : forms.NumberInput(attrs={'class':'form-control form-control-sm'}),
             # if password is your field and u want to show it to frontend than chk below
             # 'password' : forms.PasswordInput(render_value=True, attrs={'class':'form-control form-control-sm'}), # default render_value is False
 

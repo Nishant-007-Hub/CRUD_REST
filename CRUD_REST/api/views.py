@@ -28,11 +28,11 @@ def Singerr_Add(request):
             form_data_singer.save()
             form_data_singer = SingerAdd()
         if form_data_song.is_valid():
-            title = form_data_song.cleaned_data['title']
-            singer = form_data_song.cleaned_data['singer']
-            var = Song(title=title, singer=singer)
-            var.save()
-            # form_data_song.save()
+            # title = form_data_song.cleaned_data['title']
+            # singer = form_data_song.cleaned_data['singer']
+            # var = Song(title=title, singer=singer)
+            # var.save()
+            form_data_song.save()
             # below is for after save, u will see blank form on frontend we are initializing blank form
             form_data_song = SongAdd()
 
@@ -83,57 +83,57 @@ def edit_data_song(request, slug):
     return render(request, 'updatesong.html', {'var':var})
 
 
-def Singer_Add(request):
-    if request.method == "POST":
-        form_data = SingerAdd(request.POST)
-        if form_data.is_valid():
-            # if u want to save cleaned data means one by one then use below method
-            # if u want to leave any field balnk during save so use below method
-            # name = form_data.cleaned_data['name']
-            gender = form_data.cleaned_data['gender']
-            # var = Singer(name=name, gender=gender)
-            # var.save()
-            form_data.save()
-            # below is for after save, u will see blank form on frontend we are initializing blank form
-            form_data = SingerAdd()
+# def Singer_Add(request):
+#     if request.method == "POST":
+#         form_data = SingerAdd(request.POST)
+#         if form_data.is_valid():
+#             # if u want to save cleaned data means one by one then use below method
+#             # if u want to leave any field balnk during save so use below method
+#             # name = form_data.cleaned_data['name']
+#             gender = form_data.cleaned_data['gender']
+#             # var = Singer(name=name, gender=gender)
+#             # var.save()
+#             form_data.save()
+#             # below is for after save, u will see blank form on frontend we are initializing blank form
+#             form_data = SingerAdd()
 
-    else:
-        form_data = SingerAdd()
-    singer = Singer.objects.all()
-    return render(request, 'home.html',{'form':form_data, 'singers':singer})
+#     else:
+#         form_data = SingerAdd()
+#     singer = Singer.objects.all()
+#     return render(request, 'home.html',{'form':form_data, 'singers':singer})
 
 
     
-def Song_Add(request):
-    if request.method == "POST":
-        form_data = SongAdd(request.POST)
-        if form_data.is_valid():
-            form_data.save()
-            # below is for after save, u will see blank form on frontend we are initializing blank form
-            form_data = SongAdd()
+# def Song_Add(request):
+#     if request.method == "POST":
+#         form_data = SongAdd(request.POST)
+#         if form_data.is_valid():
+#             form_data.save()
+#             # below is for after save, u will see blank form on frontend we are initializing blank form
+#             form_data = SongAdd()
 
-    else:
-        form_data = SongAdd()
-    songs = Song.objects.all()
-    return render(request, 'home.html',{'form':form_data, 'songs':songs})
+#     else:
+#         form_data = SongAdd()
+#     songs = Song.objects.all()
+#     return render(request, 'home.html',{'form':form_data, 'songs':songs})
 
-def delete_data(request, myid):
-    if request.method == 'POST':
-        deleteset = Singer.objects.get(pk=myid)
-        deleteset.delete()
-        return redirect('/add')
+# def delete_data(request, myid):
+#     if request.method == 'POST':
+#         deleteset = Singer.objects.get(pk=myid)
+#         deleteset.delete()
+#         return redirect('/add')
 
-def edit_data(request, myid):
-    if request.method == "POST":
-        editset = Singer.objects.get(pk=myid)
-        var = SingerAdd(request.POST, instance=editset)
-        if var.is_valid():
-            var.save()
-            var = SingerAdd()
-    else:
-        editset = Singer.objects.get(pk=myid)
-        var = SingerAdd(instance=editset)
-    return render(request, 'updatesinger.html', {'var':var})
+# def edit_data(request, myid):
+#     if request.method == "POST":
+#         editset = Singer.objects.get(pk=myid)
+#         var = SingerAdd(request.POST, instance=editset)
+#         if var.is_valid():
+#             var.save()
+#             var = SingerAdd()
+#     else:
+#         editset = Singer.objects.get(pk=myid)
+#         var = SingerAdd(instance=editset)
+#     return render(request, 'updatesinger.html', {'var':var})
      
 
 
