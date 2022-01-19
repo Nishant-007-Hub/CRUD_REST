@@ -14,7 +14,7 @@ def home(request):
     return render(request, 'basic.html', {'singers':singerqueryset, 'songs':songqueryset})
 
 
-def Singerr_Add(request):
+def Add(request):
     if request.method == "POST":
         form_data_singer = SingerAdd(request.POST)
         form_data_song = SongAdd(request.POST)

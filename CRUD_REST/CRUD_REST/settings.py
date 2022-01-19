@@ -53,6 +53,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CSRF_TRUSTED_ORIGINS = ["https://imgcrud-rest.herokuapp.com"]
+
 ROOT_URLCONF = 'CRUD_REST.urls'
 
 TEMPLATES = [

@@ -24,12 +24,12 @@ router.register('SongModelViewset', SongModelViewSet, basename='SongModelViewSet
 router.register('SingerModelViewset', SingerModelViewSet, basename='SingerModelViewSet')
 
 urlpatterns = [
-    path('', Singerr_Add, name='home'),
+    path('', Add, name='home'),
     # path('', Song_Add, name='home'),
     # path('', home, name='homeBasic'),
     path('delete/<int:myid>/', delete_data_singer, name='delete_data_singer'),
     path('delete/<slug>/', delete_data_song, name='delete_data_song'),
     path('<int:myid>/', edit_data_singer, name='edit_data_singer'),
-    path('<slug>/', edit_data_song, name='edit_data_song'),
     path('api/', include(router.urls)),
+    path('<slug>/', edit_data_song, name='edit_data_song'),
 ]
